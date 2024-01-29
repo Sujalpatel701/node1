@@ -1,22 +1,25 @@
 const http = require('http');
 const port = 3000;
 const hoast = "localhost";
+
+const fs = require('fs');
+
+const index=fs.readFileSync('./index.html','utf-8');
 const server = http.createServer((req, res,next) => {
   if(req.url === '/'){
-    res.write('Hello World');
-    res.end();
+    return res.end(index);
   }
   if(req.url === '/about'){
     res.write('About Page');
-    res.end();
+    return res.end();
   }
   if(req.url === '/contact'){
     res.write('Contact Page');
-    res.end();
+    return res.end();
   }
   else{
     res.write('Not Found');
-    res.end();
+    return res.end();
   }
 });
 
